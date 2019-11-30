@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  db:
+    image: "postgres:10.11"
+    container_name: "eventura-db"
+    restart: always
+    environment:
+      - POSTGRES_USER=eventura
+      - POSTGRES_PASSWORD=eventura
+      - POSTGRES_DB=eventura
+    ports:
+      - "5438:5432"
+    volumes:
+      - eventura_database:/var/lib/postgresql/data
+volumes:
+  eventura_database:
+    external: true
