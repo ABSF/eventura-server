@@ -15,9 +15,8 @@ public class EventController {
     }
 
     @PostMapping(path="/add")
-    public @ResponseBody String addNewEvent (@RequestParam int id, @RequestParam String name, @RequestParam String summary, @RequestParam Integer event_category_id, @RequestParam Integer venue_id, @RequestParam String date, @RequestParam String logo) {
+    public @ResponseBody String addNewEvent (@RequestParam String name, @RequestParam String summary, @RequestParam Integer event_category_id, @RequestParam Integer venue_id, @RequestParam String date, @RequestParam String logo) {
         Event n = new Event();
-        n.setEvent_id(id);
         n.setName(name);
         n.setSummary(summary);
         n.setEvent_category_id(event_category_id);
@@ -25,7 +24,7 @@ public class EventController {
         n.setDate(date);
         n.setLogo(logo);
         eventRepository.save(n);
-        return "Saved";
+        return "New event saved!";
     }
 
     @GetMapping(path="/all")

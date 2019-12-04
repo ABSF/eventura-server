@@ -1,14 +1,12 @@
 package pl.eventura.eventuraserver.events;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@SequenceGenerator(name="event_category_id_seq", initialValue=1, allocationSize = 1)
 public class EventCategory {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="event_category_id_seq")
     private Integer event_category_id;
 
     private String name;

@@ -26,7 +26,7 @@ public class EventCategoryController {
         EventCategory n = new EventCategory();
         n.setName(name);
         eventCategoryRepository.save(n);
-        return "Saved";
+        return "New event category saved!";
     }
 
     @GetMapping(path="/{id}")
