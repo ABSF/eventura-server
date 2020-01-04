@@ -1,15 +1,20 @@
 package pl.eventura.eventuraserver.events;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/events")
 public class EventController {
+
     private final EventRepository eventRepository;
 
+    @Autowired
     public EventController(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
@@ -32,13 +37,20 @@ public class EventController {
         return eventRepository.findAll();
     }
 
-    @GetMapping(path="/{id}")
+    @GetMapping(path="/search")
+    public @ResponseBody
+    List<Event> getEvent(@RequestParam(value = "name", required = false) String name,
+                               @RequestParam(value = "date", required = false) String date){
+        if((name == null) && (date == null)) {
+            return Collections.emptyList();
+        }
+        return eventRepository.findEvent(name, date);
+    }
+
+    @GetMapping(path="/search/{id}")
     public @ResponseBody
     Optional<Event> getSpecificEvent(@PathVariable int id) {
         return eventRepository.findById(id);
     }
-
-
-
 
 }
