@@ -1,15 +1,17 @@
 package pl.eventura.eventuraserver.events;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
-public interface EventRepository extends CrudRepository<Event, Integer> {
+@Repository
+public interface EventRepository extends JpaRepository<Event, Integer> {
 
 
-    @Query(value = "SELECT e FROM Event e WHERE (:name is null or e.name LIKE CONCAT('%',:name,'%')) or ( e.date LIKE CONCAT('%',:date,'%') or (:date is null))")
-    List<Event> findEventByNameAndDate(@Param("name") String name, @Param("date") String date);
+    @Query(value = "SELECT e FROM Event e WHERE ((:text is null or lower(e.name) LIKE lower(CONCAT('%',:text,'%'))) or (:text is null or lower(e.summary) LIKE lower(CONCAT('%',:text,'%')))) and (CAST(:dateStart as date) is null or CAST(:dateEnd as date) is null or e.date >= CAST(:dateStart as date) and e.date <= CAST(:dateEnd as date)) order by e.date asc")
+    List<Event> findByNameOrSummaryContainingOrDateIsBetween(String text, LocalDate dateStart, LocalDate dateEnd);
 
 }

@@ -1,6 +1,7 @@
 package pl.eventura.eventuraserver.events;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @SequenceGenerator(name="event_id_seq", initialValue=1, allocationSize = 1)
@@ -17,7 +18,7 @@ public class Event {
 
     private String venue;
 
-    private String date;
+    private LocalDate date;
 
     private String logo;
 
@@ -61,11 +62,11 @@ public class Event {
         this.venue = venue;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
