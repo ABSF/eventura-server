@@ -10,6 +10,6 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
 
 
     @Query(value = "SELECT e FROM Event e WHERE (:name is null or e.name LIKE CONCAT('%',:name,'%')) or ( e.date LIKE CONCAT('%',:date,'%') or (:date is null))")
-    List<Event> findEvent(@Param("name") String name, @Param("date") String date);
+    List<Event> findEventByNameAndDate(@Param("name") String name, @Param("date") String date);
 
 }

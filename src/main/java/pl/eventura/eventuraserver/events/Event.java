@@ -13,9 +13,9 @@ public class Event {
 
     private String summary;
 
-    private Integer event_category_id;
+    private String event_category;
 
-    private Integer venue_id;
+    private String venue;
 
     private String date;
 
@@ -45,20 +45,20 @@ public class Event {
         this.summary = summary;
     }
 
-    public Integer getEvent_category_id() {
-        return event_category_id;
+    public String getEvent_category() {
+        return event_category;
     }
 
-    public void setEvent_category_id(Integer event_category_id) {
-        this.event_category_id = event_category_id;
+    public void setEvent_category(String event_category) {
+        this.event_category = event_category;
     }
 
-    public Integer getVenue_id() {
-        return venue_id;
+    public String getVenue() {
+        return venue;
     }
 
-    public void setVenue_id(Integer venue_id) {
-        this.venue_id = venue_id;
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
 
     public String getDate() {

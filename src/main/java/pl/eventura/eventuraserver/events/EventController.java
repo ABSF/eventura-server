@@ -20,12 +20,12 @@ public class EventController {
     }
 
     @PostMapping(path="/add")
-    public @ResponseBody String addNewEvent (@RequestParam String name, @RequestParam String summary, @RequestParam Integer event_category_id, @RequestParam Integer venue_id, @RequestParam String date, @RequestParam String logo) {
+    public @ResponseBody String addNewEvent (@RequestParam String name, @RequestParam String summary, @RequestParam String event_category, @RequestParam String venue, @RequestParam String date, @RequestParam String logo) {
         Event n = new Event();
         n.setName(name);
         n.setSummary(summary);
-        n.setEvent_category_id(event_category_id);
-        n.setVenue_id(venue_id);
+        n.setEvent_category(event_category);
+        n.setVenue(venue);
         n.setDate(date);
         n.setLogo(logo);
         eventRepository.save(n);
@@ -44,7 +44,7 @@ public class EventController {
         if((name == null) && (date == null)) {
             return Collections.emptyList();
         }
-        return eventRepository.findEvent(name, date);
+        return eventRepository.findEventByNameAndDate(name, date);
     }
 
     @GetMapping(path="/search/{id}")
