@@ -1,14 +1,13 @@
 package pl.eventura.eventuraserver.events;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping(path="/events")
 public class EventController {
 
@@ -40,7 +39,7 @@ public class EventController {
     public @ResponseBody Iterable<Event> getEvents() {
         return eventRepository.findAll();
     }
-
+    
     @GetMapping(path="/search")
     public @ResponseBody
     List<Event> getEvent(@RequestParam(value = "text", required = false) String text,
