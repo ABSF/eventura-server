@@ -1,5 +1,7 @@
 # eventura-server
- Backend dla serwisu eventura.pl
+Backend dla serwisu eventura.pl
+
+Repozytorium z kodem frontendu - https://github.com/ABSF/eventura
 
 ---
 ### Uruchomienie środowiska deweloperskiego
