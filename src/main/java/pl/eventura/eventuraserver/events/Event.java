@@ -22,6 +22,18 @@ public class Event {
 
     private String logo;
 
+    public Event() {
+    }
+
+    public Event(String name, String summary, String event_category, String venue, LocalDate date, String logo) {
+        this.name = name;
+        this.summary = summary;
+        this.event_category = event_category;
+        this.venue = venue;
+        this.date = date;
+        this.logo = logo;
+    }
+
     public Integer getEvent_id() {
         return event_id;
     }

@@ -39,7 +39,7 @@ public class EventController {
     public @ResponseBody Iterable<Event> getEvents() {
         return eventRepository.findAll();
     }
-    
+
     @GetMapping(path="/search")
     public @ResponseBody
     List<Event> getEvent(@RequestParam(value = "text", required = false) String text,
